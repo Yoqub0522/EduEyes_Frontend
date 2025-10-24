@@ -11,6 +11,7 @@ interface IProps {
 const Card = ({ organisation }: IProps) => {
   const onChange = (currentSlide: any) => {
     console.log(currentSlide);
+    
   };
   const { request, loading, error } = useHttp();
   const [open, setIsOpen] = useState(false);
