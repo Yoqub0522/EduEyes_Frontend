@@ -41,8 +41,6 @@ const Home = () => {
     setSize(value);
   };
   console.log(size);
-
-  
   return (
     <>
       <main>
@@ -80,7 +78,7 @@ const Home = () => {
           <div className="container max-w-[1170px] mx-auto flex justify-center">
             <Radio.Group
               className="!ml-3"
-              size="small"
+              size="middle"
               value={size}
               style={{ marginBottom: 16, marginTop: 16 }}
               onChange={onChange}
