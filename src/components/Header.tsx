@@ -34,7 +34,7 @@ const Header = () => {
         <Flex gap={3} align="center">
           <Input.Search
             placeholder="Search..."
-            className="hidden sm:block rounded-md focus:ring-2 focus:ring-white/40"
+            className="hidden! sm:block! rounded-md focus:ring-2 focus:ring-white/40"
             variant="outlined"
           />
 

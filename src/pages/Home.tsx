@@ -21,15 +21,20 @@ const Home = () => {
   });
   const lat = coords?.latitude || 41.2995;
   const long = coords?.longitude || 69.2401;
+
+  const datatata = {lat, long}
+  console.log(datatata);
+  
   useEffect(() => {
     const url = size
       ? `https://api.yoqubaxmedov.xyz/api/admins/organization/?org_type=${size}&lat=${lat}&long=${long}`
       : `https://api.yoqubaxmedov.xyz/api/admins/organization/?lat=${lat}&long=${long}`;
 
+      console.log(url);
     request(url)
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
-  }, [size, request]);
+  }, [size, request, lat, long]);
 
   const onChange = (e: RadioChangeEvent) => {
     const value = e.target.value;
@@ -37,12 +42,13 @@ const Home = () => {
   };
   console.log(size);
 
+  
   return (
     <>
       <main>
         <Header />
         <div className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-500">
-          <div className="container h-screen max-w-[1170px] mx-auto  flex justify-center items-center gap-6 flex-col">
+          <div className="container h-screen max-w-[1170px] mx-auto px-2  flex justify-center items-center gap-6 flex-col">
             <h1 className="text-4xl font-bold text-white">Edu Eyes</h1>
             <h2 className="font-semibold text-[32px] text-center leading-10 tracking-[-2%] text-white">
               The place where you can find usefull information
@@ -55,7 +61,7 @@ const Home = () => {
               <Button
                 color="primary"
                 type="primary"
-                className="w-40 !text-bold !py-5"
+                className="w-30 md:w-40! !text-bold !py-5"
               >
                 Join Us
               </Button>
@@ -63,7 +69,7 @@ const Home = () => {
                 color="primary"
                 type="primary"
                 ghost
-                className="w-40 !py-5"
+                className="!w-30 md:w-40! !py-5"
               >
                 Learn More
               </Button>
@@ -74,8 +80,8 @@ const Home = () => {
           <div className="container max-w-[1170px] mx-auto flex justify-center">
             <Radio.Group
               className="!ml-3"
+              size="small"
               value={size}
-              size="large"
               style={{ marginBottom: 16, marginTop: 16 }}
               onChange={onChange}
             >

@@ -20,7 +20,7 @@ const Contact = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-10">
+      <div className="grid md:grid-cols-2 gap-20 md:gap-8">
         <div className="w-full h-[400px] bg-gray-200 flex items-center justify-center rounded">
           <div className="w-full flex justify-center mt-10">
             <iframe
