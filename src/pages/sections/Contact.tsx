@@ -1,25 +1,25 @@
 import { Form, Input, Button } from "antd";
-import React from "react";
-import OrganisationMap from "../components/OrganisationMap";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
   const onFinish = (values: any) => {
     console.log("Form values:", values);
   };
 
-  
+  const { t } = useTranslation();
   return (
-    <div className="container max-w-[1170px] mx-auto mt-20 pb-20 px-4">
+    <div
+      id="Contact"
+      className="container max-w-[1170px] mx-auto mt-20 pb-20 px-4"
+    >
       <div className="flex flex-col items-center mb-10">
         <h2 className="font-semibold text-4xl leading-[48px] tracking-[0.04em] font-poppins mb-2">
-          Contact Us
+          {t("contact.title")}
         </h2>
         <p className="font-normal text-base leading-6 font-poppins text-center max-w-md">
-          We'd love to hear from you! Please fill out the form and we will get
-          in touch.
+          {t("contact.subtitle")}
         </p>
       </div>
-
       <div className="grid md:grid-cols-2 gap-20 md:gap-8">
         <div className="w-full h-[400px] bg-gray-200 flex items-center justify-center rounded">
           <div className="w-full flex justify-center mt-10">
@@ -42,7 +42,7 @@ const Contact = () => {
             autoComplete="off"
           >
             <Form.Item
-              label="Full Name"
+              label={t("contact.form.name")}
               name="fullname"
               rules={[
                 { required: true, message: "Please enter your full name!" },
@@ -51,7 +51,7 @@ const Contact = () => {
               <Input className="rounded-md" placeholder="John Doe" />
             </Form.Item>
             <Form.Item
-              label="Email"
+              label={t("contact.form.email")}
               name="email"
               rules={[
                 { required: true, message: "Please enter your email!" },
@@ -61,7 +61,7 @@ const Contact = () => {
               <Input className="rounded-md" placeholder="example@mail.com" />
             </Form.Item>
             <Form.Item
-              label="Message"
+              label={t("contact.form.message")}
               name="message"
               rules={[
                 { required: true, message: "Please write your message!" },
@@ -70,17 +70,16 @@ const Contact = () => {
               <Input.TextArea
                 rows={5}
                 className="rounded-md !resize-none"
-                placeholder="Your message..."
+                placeholder={t("contact.form.placeholder")}
               />
             </Form.Item>
-
             <Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
                 className="w-full bg-blue-600 hover:bg-blue-700"
               >
-                Send Message
+                {t("contact.form.button")}
               </Button>
             </Form.Item>
           </Form>

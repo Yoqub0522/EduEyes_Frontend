@@ -1,4 +1,3 @@
-import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 const OrganisationMap = () => {
   return (
@@ -17,5 +16,4 @@ const OrganisationMap = () => {
     </div>
   );
 };
-
 export default OrganisationMap;

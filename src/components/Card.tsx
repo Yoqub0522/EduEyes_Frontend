@@ -4,31 +4,29 @@ import { Carousel, Divider } from "antd";
 import CardItem from "./CardItem";
 import { useHttp } from "../hooks/useHttp";
 import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 interface IProps {
   organisation: IOrganisation;
 }
-
 const Card = ({ organisation }: IProps) => {
   const onChange = (currentSlide: any) => {
     console.log(currentSlide);
-    
   };
   const { request, loading, error } = useHttp();
   const [open, setIsOpen] = useState(false);
   const [teacherData, setTeacherData] = useState<ITeacherData[] | null>(null);
-
   const onTeacher = (name: string) => {
     request(
       `https://api.yoqubaxmedov.xyz/api/admins/teacher/?organization=${name}`
     ).then((res) => setTeacherData(res.data));
   };
-
   const handleTeacher = () => {
     setIsOpen(!open);
     if (!teacherData) {
       onTeacher(organisation.name);
     }
   };
+  const { t } = useTranslation();
   console.log(error);
   return (
     <div className="flex flex-col rounded-md shadow-md">
@@ -38,6 +36,7 @@ const Card = ({ organisation }: IProps) => {
             <div className="h-[230px]">
               <picture>
                 <source
+                  className="w-10"
                   srcSet={`${
                     item.image === null
                       ? "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ff09sobcsm1ovowm5hlwv.png"
@@ -45,12 +44,16 @@ const Card = ({ organisation }: IProps) => {
                   }`}
                   type="image/webp"
                 />
-                <source srcSet={`${item.image}`} type="image/jpeg" />
+                <source
+                  className="w-15"
+                  srcSet={`${item.image}`}
+                  type="image/jpeg"
+                />
                 <img
                   src={item.image}
                   alt={item.id}
                   loading="lazy"
-                  className="w-full h-full object-cover rounded"
+                  className="w-full h-full object-cover object-bottom rounded"
                 />
               </picture>
             </div>
@@ -69,7 +72,7 @@ const Card = ({ organisation }: IProps) => {
           The organisation: {organisation?.org_type} ·{" "}
           {organisation.distance_km} km
         </p>
-        <Divider className="pb-0!">see below</Divider>
+        <Divider className="pb-0!">{t("below")}</Divider>
       </div>
       <div
         className={`  overflow-auto transition-all duration-500 flex flex-col gap-3 px-2 ${

@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "below": "See Below",
+  "header": {
+    "getInfo": "Get Information",
+    "login": "Login"
+  },
+  "hero": {
+    "title": "Edu Eyes",
+    "subtitle": "The place where you can find usefull information",
+    "description": "We know how large objects will act, but things on a small scale just do not act that way."
+  },
+  "buttons": {
+    "button": "Join us",
+    "button2": "Learn More",
+    "button3": "Get Information"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you! Please fill out the form and we will get in touch.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "message": "Message",
+      "button": "Send a message",
+      "placeholder": "Your message..."
+    }
+  },
+  "footer": {
+    "support": "Support",
+    "follow": "Follow Us",
+    "discount": "Get 10% discount",
+    "account": {
+      "title": "Account",
+      "subtitle": "My Account",
+      "address": "Address"
+    },
+    "socials": "Socials"
+  }
+}

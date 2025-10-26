@@ -1,0 +1,43 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "contact": "Aloqa"
+  },
+  "below": "Pastga tushuring",
+  "header": {
+    "getInfo": "Ma'lumot olish",
+    "login": "Kirish"
+  },
+  "hero": {
+    "title": "Edu Eyes",
+    "subtitle": "Foydali ma'lumotlarni topishingiz mumkin bo'lgan joy",
+    "description": "Biz katta ob'ektlar qanday harakat qilishini bilamiz, lekin kichik hajmdagi narsalar shunchaki bunday harakat qilmaydi."
+  },
+  "buttons": {
+    "button": "Bizga qoshiling",
+    "button2": "Koproq malumot"
+  },
+  "contact": {
+    "title": "Aloqaga chiqing",
+    "subtitle": "Sizdan eshitishni istardik! Iltimos, shaklni to'ldiring va biz bog'lanamiz.",
+    "form": {
+      "name": "To'liq Ism",
+      "email": "Elektron pochta",
+      "message": "Xabar",
+      "button": "Xabar yuborish",
+      "placeholder": "Sizning xabaringiz..."
+    }
+  },
+  "footer": {
+    "support": "Qo'llab-quvvatlash",
+    "follow": "Obuna bo'ling",
+    "discount": "10% chegirma oling",
+    "account": {
+      "title": "Akkaunt",
+      "subtitle": "Mening akkauntim",
+      "address": "Manzil"
+    },
+    "socials": "Ijtimoiy tarmoq"
+  }
+}

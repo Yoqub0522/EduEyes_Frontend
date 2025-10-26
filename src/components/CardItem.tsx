@@ -46,12 +46,12 @@ const CardItem = ({ item, id }: IProps) => {
         footer=""
         className="px-4!"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="grid mt-3 grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="flex justify-center">
             <img
               src={item.image}
               alt={item.full_name}
-              className="min-h-[250px] rounded object-cover"
+              className="h-[250px] rounded object-cover"
             />
           </div>
           <div className="flex flex-col sm:items-start items-center gap-3">
@@ -60,10 +60,9 @@ const CardItem = ({ item, id }: IProps) => {
             <p className="font-inter">Telefon raqam: {item.phone}</p>
             <div className="flex items-center gap-3">
               <p>Rating:</p>
-              <Rate value={item.rating} style={{ fontSize: 14 }} disabled/>
+              <Rate value={item.rating} style={{ fontSize: 14 }} disabled />
             </div>
-            <p>
-            </p>
+            <p></p>
           </div>
         </div>
       </Modal>
