@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
 import { Radio } from "antd";
 import Card from "../components/Card";
 import { useHttp } from "../hooks/useHttp";
@@ -44,7 +43,6 @@ const Home = () => {
   return (
     <>
       <main>
-        <Header />
         <Hero />
         <div id="About">
           <div className="container max-w-[1170px] mx-auto flex justify-center">

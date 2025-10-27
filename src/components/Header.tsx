@@ -6,7 +6,6 @@ import { navLinks } from "../constants";
 import { useTranslation } from "react-i18next";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("en");
   const [open, setOpen] = useState(false);
   const items: MenuProps["items"] = [
     { key: "en", label: "En" },
@@ -15,7 +14,6 @@ const Header = () => {
   const { i18n, t } = useTranslation();
   i18n.language;
   const handleMenuClick: MenuProps["onClick"] = (e) => {
-    setSelectedLang(e.key);
     i18n.changeLanguage(e.key);
   };
   const handleOpen = (open: boolean) => {
@@ -80,12 +78,14 @@ const Header = () => {
                 </div>
               </Space>
             </Dropdown>
-            <Button
-              type="primary"
-              className="bg-white! text-black!  py-5!  font-semibold px-8! rounded-3xl! border-none max-lg:hidden! hover:bg-white/90 hover:text-emerald-600 transition-all shadow-sm"
-            >
-              {t("buttons.button2")}
-            </Button>
+            <Link to="/dashboard">
+              <Button
+                type="primary"
+                className="bg-white! text-black!  py-5!  font-semibold px-8! rounded-3xl! border-none max-lg:hidden! hover:bg-white/90 hover:text-emerald-600 transition-all shadow-sm"
+              >
+                {t("buttons.button2")}
+              </Button>
+            </Link>
           </Flex>
           <div
             className="cursor-pointer lg:hidden text-white"
@@ -112,13 +112,15 @@ const Header = () => {
               </li>
             ))}
           </ul>
-          <Button
-            type="primary"
-            onClick={() => setIsOpen(false)}
-            className="bg-white! text-black!  py-5!  font-semibold px-8! rounded-3xl! border-none  hover:bg-white/90 hover:text-emerald-600 transition-all shadow-sm"
-          >
-            {t("buttons.button2")}
-          </Button>
+          <Link to="/dashboard">
+            <Button
+              type="primary"
+              onClick={() => setIsOpen(false)}
+              className="bg-white! text-black!  py-5!  font-semibold px-8! rounded-3xl! border-none  hover:bg-white/90 hover:text-emerald-600 transition-all shadow-sm"
+            >
+              {t("buttons.button2")}
+            </Button>
+          </Link>
         </div>
       )}
     </header>
