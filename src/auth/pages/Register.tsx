@@ -1,7 +1,6 @@
 import { Button, Card, Form, Input } from "antd";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
 import { toast } from "sonner";
 
 interface IUserRegister {
