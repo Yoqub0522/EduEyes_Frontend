@@ -28,17 +28,33 @@ const Register = () => {
           body: JSON.stringify(values),
         }
       );
+      const data = await response.json();
+      console.log(data.error);
       if (!response.ok) {
-        throw new Error("Something went wrong!");
+        let errorMessage = "Registration failed!";
+        if (data?.error_message) {
+          const messages = Object.entries(data.error_message)
+            .map(([field, errors]) => `${(errors as string[]).join(", ")}`)
+            .join("\n");
+          errorMessage = messages || errorMessage;
+        } else if (data?.detail) {
+          errorMessage = data.detail;
+        }
+        throw new Error(errorMessage);
       }
-      navigate("/auth/login");
       toast.success("You successfully registered!");
-    } catch (error) {
-      toast.error(`Something went wrong!`);
+      form.resetFields();
+      navigate("/auth/login");
+    } catch (err: any) {
+      console.error("Registration error:", err);
+      const message =
+        err.message || "Something went wrong! Please try again later.";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <div className="lg:w-[40%] px-6 w-full sm:w-[70%] md:w-[60%]">
       {loading && <p>loading...</p>}
@@ -50,13 +66,35 @@ const Register = () => {
           autoComplete="off"
         >
           <Form.Item label="First Name  ">
-            <Input maxLength={150} placeholder="Enter your first name" />
+            <Input
+              maxLength={150}
+              name="first_name"
+              placeholder="Enter your first name"
+            />
           </Form.Item>
           <Form.Item label="Last Name" name="last_name">
             <Input maxLength={150} placeholder="Enter your last name" />
           </Form.Item>
-          <Form.Item label="Username" name="username">
-            <Input maxLength={150} placeholder="Enter your username" />
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[
+              { required: true, message: "Username is required" },
+              { min: 3, message: "Username must be at least 3 characters" },
+            ]}
+          >
+            <Input placeholder="Enter your username" />
+          </Form.Item>
+
+          <Form.Item
+            label="Phone Number"
+            name="phone_number"
+            rules={[
+              { required: true, message: "Phone number is required" },
+              { pattern: /^[0-9]+$/, message: "Only digits are allowed" },
+            ]}
+          >
+            <Input maxLength={15} placeholder="Enter your phone number" />
           </Form.Item>
           <Form.Item
             label="Email"
@@ -86,7 +124,7 @@ const Register = () => {
               block
               className="rounded-md"
             >
-              Register
+              {loading ? "Registering..." : "Register"}
             </Button>
           </Form.Item>
           <p className="text-center">

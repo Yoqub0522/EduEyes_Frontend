@@ -16,7 +16,7 @@ const Login = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://api.yoqubaxmedov.xyz/api/users/login/",
+        "https://api.yoqubaxmedov.xyz/api/users/auth/login/",
         {
           method: "POST",
           headers: {
@@ -26,13 +26,15 @@ const Login = () => {
         }
       );
       const data = await response.json();
+      console.log(data);
+
       if (!response.ok) {
         throw new Error(`The password or email is incorrect!`);
       }
-      const accessToken = data.data.access;
-      const refresh = data.data.refresh;
-      localStorage.setItem("refresh", refresh);
-      login(accessToken);
+      const accessToken = data.data.tokens.access;
+      const refresh = data.data.tokens.refresh;
+      localStorage.setItem("refresh", JSON.stringify(refresh));
+      login(JSON.stringify(accessToken));
       toast.success("Successfully logged in!");
       navigate("/dashboard");
     } catch (error) {

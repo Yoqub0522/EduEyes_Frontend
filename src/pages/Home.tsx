@@ -39,7 +39,7 @@ const Home = () => {
     const value = e.target.value;
     setSize(value);
   };
-  console.log(size);
+  console.log("dkdk");
   return (
     <>
       <main>

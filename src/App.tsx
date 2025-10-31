@@ -5,9 +5,11 @@ import AuthLayout from "./auth/AuthLayout";
 import Login from "./auth/pages/Login";
 import Register from "./auth/pages/Register";
 import AuthProvider from "./context/AuthContext";
-import Dashboard from "./admin/Dashboard";
+import Dashboard from "./admin/pages/Dashboard";
 import AdminLayout from "./admin/AdminLayout";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import Organisations from "./admin/pages/Organisations";
+import Teachers from "./admin/pages/Teachers";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route element={<AdminLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/admin/organisations" element={<Organisations />} />
+              <Route path="/admin/teachers" element={<Teachers />} />
             </Route>
           </Route>
           <Route

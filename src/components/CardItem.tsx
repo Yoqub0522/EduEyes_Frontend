@@ -1,12 +1,10 @@
 import { useState } from "react";
 import type { ITeacherData } from "../types";
 import { Avatar, Modal, Rate } from "antd";
-
 interface IProps {
   item: ITeacherData;
   id: string;
 }
-
 const CardItem = ({ item, id }: IProps) => {
   const icon = <img src={item.image} alt={item.full_name} />;
   console.log(item.rating);
@@ -69,5 +67,4 @@ const CardItem = ({ item, id }: IProps) => {
     </>
   );
 };
-
 export default CardItem;

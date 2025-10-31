@@ -1,25 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Flex, Dropdown, Space, type MenuProps } from "antd";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Button, Flex } from "antd";
+import { Menu, X } from "lucide-react";
 import { navLinks } from "../constants";
 import { useTranslation } from "react-i18next";
+import Language from "./shared/Language";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [open, setOpen] = useState(false);
-  const items: MenuProps["items"] = [
-    { key: "en", label: "En" },
-    { key: "uz", label: "Uz" },
-  ];
-  const { i18n, t } = useTranslation();
-  i18n.language;
-  const handleMenuClick: MenuProps["onClick"] = (e) => {
-    i18n.changeLanguage(e.key);
-  };
-  const handleOpen = (open: boolean) => {
-    setOpen(open);
-  };
-
+  const { t } = useTranslation();
   return (
     <header className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-500 shadow-md fixed w-full top-0 left-0 z-50">
       <div className="container mx-auto max-w-[1170px] flex justify-between items-center py-5 px-2">
@@ -48,36 +36,7 @@ const Header = () => {
         </nav>
         <div className="flex items-center gap-2">
           <Flex gap={15} align="center">
-            <Dropdown
-              menu={{
-                items,
-                selectable: true,
-                selectedKeys: [i18n.language],
-                onClick: handleMenuClick,
-              }}
-              trigger={["click"]}
-              placement="bottomRight"
-              arrow
-              onOpenChange={handleOpen}
-            >
-              <Space className="cursor-pointer transition">
-                <div className="flex items-center gap-1/2">
-                  <span className="font-poppins text-md text-white">
-                    {i18n.language === "en"
-                      ? "En"
-                      : i18n.language === "ru"
-                      ? "Ru"
-                      : "Uz"}
-                  </span>
-                  <ChevronDown
-                    className={`text-white ${
-                      open ? "rotate-[180deg]" : ""
-                    }  transition`}
-                    size={20}
-                  />
-                </div>
-              </Space>
-            </Dropdown>
+            <Language />
             <Link to="/dashboard">
               <Button
                 type="primary"
