@@ -2,33 +2,52 @@ import { useCallback, useState } from "react";
 
 export const useHttp = () => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<boolean | null>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const request = useCallback(
-      async (
-        url : string,
-        method = "GET",
-        body = null,
-        headers = { "Content-Type": "application/json" }
-      ) => {
-        setLoading(true)
-        try {
-          const response = await fetch(url, { method, body, headers });
-          if(!response.ok){
-            throw new Error(`Could not feth trhe ${url}`)
-          }
-          const data = await response.json()
-          setLoading(false)
-          return data
-        } catch (error : any) {
-            setLoading(false)
-            setError(error.message)
-            throw error
-        }
-      },
-      []
-    );
-    const clearError = useCallback(() => setError(null), [])
+    async (
+      url: string,
+      method: string = "GET",
+      body?: any,
+      headers?: Record<string, string>
+    ) => {
+      setLoading(true);
+      setError(null);
 
-    return {loading, error, request, clearError}
+      try {
+        const isFormData = body instanceof FormData;
+
+        const response = await fetch(url, {
+          method,
+          body: method !== "GET" ? body : undefined,
+          headers: isFormData
+            ? undefined
+            : { "Content-Type": "application/json", ...headers },
+        });
+
+        if (!response.ok) {
+          const errText = await response.text();
+          throw new Error(
+            errText || `Request failed with status ${response.status}`
+          );
+        }
+        const contentType = response.headers.get("content-type");
+        const data = contentType?.includes("application/json")
+          ? await response.json()
+          : await response.text();
+
+        setLoading(false);
+        return data;
+      } catch (error: any) {
+        setLoading(false);
+        setError(error.message);
+        throw error;
+      }
+    },
+    []
+  );
+
+  const clearError = useCallback(() => setError(null), []);
+
+  return { loading, error, request, clearError };
 };

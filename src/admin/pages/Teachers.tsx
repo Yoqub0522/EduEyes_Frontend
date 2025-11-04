@@ -16,14 +16,18 @@ const Teachers = () => {
     <>
       <div>
         <h1 className="text-xl font-inter font-semibold">Teachers</h1>
-        <div className="flex flex-col gap-3">
+        <div>
           {loading && (
             <div className="flex justify-center h-[70vh] items-center">
               <Loader2 className="animate-spin" />
             </div>
           )}
-          {teachers &&
-            teachers.map((teacher) => <TeacherCard teacher={teacher} />)}
+          <div className="grid grid-cols-4 gap-4">
+            {teachers &&
+              teachers.map((teacher) => (
+                <TeacherCard key={teacher.id} teacher={teacher} />
+              ))}
+          </div>
         </div>
       </div>
     </>

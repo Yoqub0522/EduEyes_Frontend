@@ -3,7 +3,7 @@ import type { IOrganisation, ITeacherData } from "../types";
 import { Button, Carousel, Divider, Modal } from "antd";
 import CardItem from "./CardItem";
 import { useHttp } from "../hooks/useHttp";
-import { Edit, Edit2, Loader2 } from "lucide-react";
+import { Edit, Edit2, Loader2, Trash } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 interface IProps {
@@ -31,15 +31,13 @@ const Card = ({ organisation, isAdmin = false }: IProps) => {
   };
   const onDelete = async () => {
     request(
-      `https://api.yoqubaxmedov.xyz/api/admins/organization/${organisation.id}`,
-      "DELETE",
-      null,
-      { "Content-Type": "application/json" }
+      `https://api.yoqubaxmedov.xyz/api/admins/organization/${organisation.id}/`,
+      "DELETE"
     )
       .then(() => {
         toast.success(`You successfully deleted the ${organisation.name}`);
-
         setIsModalOpen(false);
+        location.reload();
       })
       .catch(() => console.log(organisation.id));
   };
@@ -98,7 +96,7 @@ const Card = ({ organisation, isAdmin = false }: IProps) => {
               danger
               type="primary"
             >
-              Delete
+              <Trash size={15} />
             </Button>
           </div>
         )}

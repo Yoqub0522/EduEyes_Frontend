@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Radio } from "antd";
 import Card from "../components/Card";
-import { useHttp } from "../hooks/useHttp";
 import type { RadioChangeEvent } from "antd";
 import type { IOrganisation } from "../types";
 import { Loader2 } from "lucide-react";
@@ -9,10 +8,10 @@ import { useGeolocated } from "react-geolocated";
 import Contact from "./sections/Contact";
 import Footer from "../components/shared/Footer";
 import Hero from "./sections/Hero";
+import { useHttp } from "../hooks/useHttp";
 const Home = () => {
-  const { request, loading, error } = useHttp();
   const [size, setSize] = useState("");
-  const [data, setData] = useState<IOrganisation[] | null>(null);
+  const [data, setData] = useState<null | IOrganisation[]>(null);
   const { coords } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -21,25 +20,21 @@ const Home = () => {
   });
   const lat = coords?.latitude || 30;
   const long = coords?.longitude || 40;
-
-  const datatata = { lat, long };
-  console.log(datatata);
+  const { request, loading, error } = useHttp();
 
   useEffect(() => {
     const url = size
       ? `https://api.yoqubaxmedov.xyz/api/admins/organization/?org_type=${size}&lat=${lat}&long=${long}`
       : `https://api.yoqubaxmedov.xyz/api/admins/organization/?lat=${lat}&long=${long}`;
-    console.log(url);
     request(url)
       .then((res) => setData(res.data))
-      .catch((err) => console.log(err));
-  }, [size, request, lat, long]);
-
+      .catch(() => console.log("error"));
+  }, [size]);
   const onChange = (e: RadioChangeEvent) => {
     const value = e.target.value;
     setSize(value);
   };
-  console.log("dkdk");
+  console.log(data);
   return (
     <>
       <main>
@@ -73,7 +68,7 @@ const Home = () => {
             {!loading && data && (
               <div className="grid grid-cols-1 px-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 mt-10 container mx-auto max-w-[1170px]">
                 {data &&
-                  data!.map((organisation) => (
+                  data!.map((organisation: IOrganisation) => (
                     <div key={organisation.id}>
                       <Card organisation={organisation} />
                     </div>
