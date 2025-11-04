@@ -163,7 +163,6 @@ const Organisations = () => {
               </div>
             </Upload>
           </Form.Item>
-
           <Form.Item>
             <Button
               type="primary"

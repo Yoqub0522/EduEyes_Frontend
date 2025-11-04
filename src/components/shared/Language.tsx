@@ -9,7 +9,7 @@ const Language = ({ color = "text-white" }: { color?: string }) => {
     { key: "en", label: "En" },
     { key: "uz", label: "Uz" },
   ];
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
   const handleMenuClick: MenuProps["onClick"] = (e) => {
     i18n.changeLanguage(e.key);
   };

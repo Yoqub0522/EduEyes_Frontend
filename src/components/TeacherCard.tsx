@@ -1,4 +1,3 @@
-import React from "react";
 import type { ITeacherData } from "../types";
 
 interface IProps {
