@@ -34,7 +34,9 @@ const Register = () => {
         let errorMessage = "Registration failed!";
         if (data?.error_message) {
           const messages = Object.entries(data.error_message)
-            .map(([field, errors]) => `${(errors as string[]).join(", ")}`)
+            .map(([field, errors]) => {
+              return `${(errors as string[]).join(", ")}` || field;
+            })
             .join("\n");
           errorMessage = messages || errorMessage;
         } else if (data?.detail) {
